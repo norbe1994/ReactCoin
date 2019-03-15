@@ -44,7 +44,9 @@ class List extends React.Component {
   }
 
   render() {
-    if (this.state.loading) {
+    const { loading, error, currencies } = this.state
+
+    if (loading) {
       return (
         <div className="loading-container">
           <Loading />
@@ -52,8 +54,8 @@ class List extends React.Component {
       )
     }
 
-    if (this.state.error) {
-      return <div className="error">{this.state.error}</div>
+    if (error) {
+      return <div className="error">{error}</div>
     }
 
     return (
@@ -68,7 +70,7 @@ class List extends React.Component {
             </tr>
           </thead>
           <tbody className="Table-body">
-            {this.state.currencies.map(currency => (
+            {currencies.map(currency => (
               <tr key={currency.id}>
                 <td>
                   <span className="Table-rank">{currency.rank}</span>
